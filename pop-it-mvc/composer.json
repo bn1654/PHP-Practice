@@ -1,5 +1,5 @@
 {
-    "name": "jurapro/pop-it-mvc",
+    "name": "bn1654/php-practice",
     "description": "Simple mvc framework",
     "type": "project",
     "license": "MIT",
@@ -7,6 +7,10 @@
         {
             "name": "jurapro",
             "email": "jurapro@yandex.ru"
+        },
+        {
+            "name": "bn1654",
+            "email": "stikenloni@gmail.com"
         }
     ],
     "minimum-stability": "dev",
