@@ -22,17 +22,20 @@ class Auth
    public static function login(IdentityInterface $user): void
    {
        self::$user = $user;
+       
        Session::set('id', self::$user->getId());
    }
 
    //Аутентификация пользователя и вход по учетным данным
    public static function attempt(array $credentials): bool
    {
-       if ($user = self::$user->attemptIdentity($credentials)) {
-           self::login($user);
-           return true;
-       }
-       return false;
+        //print_r($credentials);
+        
+        if ($user = self::$user->attemptIdentity($credentials)) {
+            self::login($user);
+            return true;
+        }
+        return false;
    }
 
    //Возврат текущего аутентифицированного пользователя

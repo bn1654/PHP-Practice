@@ -2,7 +2,7 @@
 //Включаем запрет на неявное преобразование типов
 declare(strict_types=1);
 
-// session_start();
+session_start();
 
 try {
    require __DIR__ . '/../../vendor/autoload.php';
