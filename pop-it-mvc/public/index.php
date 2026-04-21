@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 try {
    //Создаем экземпляр приложения и запускаем его
+   require_once __DIR__ . '/../vendor/autoload.php';
    $app = require_once __DIR__ . '/../core/bootstrap.php';
    $app->run();
 } catch (\Throwable $exception) {

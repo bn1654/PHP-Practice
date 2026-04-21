@@ -2,6 +2,9 @@
 
 use Src\Route;
 
-Route::add('go', [Controller\SiteContoroller::class, 'index']);
-Route::add('hello', [Controller\SiteContoroller::class, 'hello']);
-Route::add('signup', [Controller\SiteContoroller::class, 'signup']);
+Route::add('GET', '/hello', [Controller\SiteController::class, 'hello'])
+   ->middleware('auth');
+Route::add(['GET', 'POST'], '/signup', [Controller\SiteController::class, 'signup']);
+Route::add(['GET', 'POST'], '/login', [Controller\SiteController::class, 'login']);
+Route::add('GET', '/logout', [Controller\SiteController::class, 'logout']);
+

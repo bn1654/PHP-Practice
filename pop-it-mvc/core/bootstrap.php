@@ -2,7 +2,7 @@
 //Путь до директории с конфигурационными файлами
 const DIR_CONFIG = '/../config';
 
-require_once __DIR__ . '/../vendor/autoload.php';
+
 
 //Добавляем пользовательскую функцию автозагрузки классов
 spl_autoload_register(function ($className) {
