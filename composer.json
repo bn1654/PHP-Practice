@@ -16,8 +16,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.4 | ^8.0",
-        "illuminate/database": "^11.0@dev",
-        "illuminate/events": "^11.0@dev"
+        "illuminate/database": "13.x-dev",
+        "illuminate/events": "13.x-dev"
     },
     "autoload": {
         "psr-4": {

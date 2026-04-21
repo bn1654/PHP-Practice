@@ -4,7 +4,7 @@ namespace Controller;
 
 use Src\View;
 
-class Site
+class SiteContoroller
 {
    public function index(): string
    {
