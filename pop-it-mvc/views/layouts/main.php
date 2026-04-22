@@ -10,12 +10,16 @@
 <body>
 <header>
    <nav>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
+       <a href="<?= app()->route->getUrl('/hello') ?>">Аспирантура</a>
+       <a href=#>Публикации</a>
+       <a href=#>Диссертации</a>
+       <a href=#>Научные руководители</a>
+       <a href=#>Аспиранты</a>
+       <a href=#>Отчетность</a>
        <?php
        if (!app()->auth::check()):
            ?>
            <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-           <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
        <?php
        else:
            ?>
@@ -28,6 +32,10 @@
 <main>
    <?= $content ?? '' ?>
 </main>
+
+<footer>
+    Сайт аспирантуры для практики
+</footer>
 
 </body>
 </html>

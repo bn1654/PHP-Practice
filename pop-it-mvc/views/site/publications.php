@@ -1,7 +1,12 @@
 <div>
-    <h1>Последние опубликованные научные работы</h1>
     <div>
-        <div class="post">
+        <h1>Все наши научные публикации</h1>
+        <form method="get">
+            <input type="text" placeholder="Поиск...">
+        </form>
+    </div>
+    <div>
+    <div class="post">
             <div>
             <h2>Дуб как пример многолетнего растения</h2>
             <span>Умный издатель</span>
@@ -11,8 +16,8 @@
             <span>Цитирований в РИНЦ: 5</span>
             <span>20.02.2026</span>
             </div>
-        </div>
-        <div class="post">
+    </div>
+    <div class="post">
             <div>
             <h2>Дуб как пример многолетнего растения</h2>
             <span>Умный издатель</span>
@@ -22,23 +27,6 @@
             <span>Цитирований в РИНЦ: 5</span>
             <span>20.02.2026</span>
             </div>
-        </div>
     </div>
 </div>
-<div>
-    <h1>Наши научные руководители</h1>
-    <div>
-        <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
-        <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
-    </div>
 </div>

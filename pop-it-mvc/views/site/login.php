@@ -1,4 +1,5 @@
-<h2>Авторизация</h2>
+<div>
+<h2>Вход</h2>
 <h3><?= $message ?? ''; ?></h3>
 
 <h3><?= app()->auth->user()->name ?? ''; ?></h3>
@@ -10,4 +11,5 @@ if (!app()->auth::check()):
        <label>Пароль <input type="password" name="password"></label>
        <button>Войти</button>
    </form>
-<?php endif;
+<?php endif;?>
+</div>
