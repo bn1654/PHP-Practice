@@ -14,10 +14,15 @@ class DirectorsController
         $directors = Scientific_director::all();
 
         if($request->get('search')){
-            $search = explode(trim($request->get('search')), ' ');
+            $search = explode(' ', trim($request->get('search')));
+            
+            $query = Scientific_director::query();
+
             foreach($search as $s){
-           $directors = Scientific_director::where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%")->get();
-            }}
+           $query->where('lastname', 'LIKE', "%{$s}%")->where('firsname', 'LIKE', "%{$s}%")->where('patronym', 'LIKE', "%{$s}%");
+            }
+            $directors = $query->get();
+            }
 
         return new View('site.scientific_directors', ['directors' => $directors]);
     }
