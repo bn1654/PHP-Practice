@@ -1,68 +1,67 @@
 <div>
     <div class="person-info">
         <div>
-        <h1>Георгий Георгиевич Героев</h1>
+        <h1><?php echo $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym ?></h1>
         <span>Научный руководитель</span>
         </div>
         <div class="statistic">
-            <span>Научные публикации аспирантов: 4</span>
-            <span>Успешные защиты аспирантов: 4</span>
-           <span> Аспирантов: 4</span>
+            <?php
+            echo '<span>Научные публикации аспирантов: ' . $publications->count() .'</span>
+            <span>Успешные защиты аспирантов: ' . $dissertations->where('status', 3)->count() .'</span>
+           <span> Аспирантов: ' . $director->get_aspirants_count() .'</span>'
+           ?>
         </div>
     </div>
 <h2 class="section-h">Аспиранты</h2>
     <div class="publications">
-    <div class="aspirant">
+    <?php
+        foreach ($aspirants as $aspirant)
+            {
+                echo '<div class="aspirant">
             <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
+            <h2>' . $aspirant->lastname . ' ' . $aspirant->firsname . ' ' . $aspirant->patronym . '</h2>
+            <span>Научный руководитель:<br>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</span>
             </div>
-        </div>
-    <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
-    <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
-    <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
+        </div>';
+            }
+    ?>
 </div>
 <h2 class="section-h">Научные публикации аспирантов</h2>
 <div class="publications">
-    <div class="post">
+    <?php
+        foreach ($publications as $publication)
+            {
+                echo '<div class="post">
                     <div class="up-card">
-                    <h2>Дуб как пример многолетнего растения</h2>
-                    <span>Умный издатель</span>
-                    <span>Автор: Василий Иванович Иванов</span>
+                    <h2>' . $publication->theme . '</h2>
+                    <span>' . $publication->publisher . '</span>
+                    <span>Автор:' . $authors_pub[$publication->publicationid]->lastname . ' ' . $authors_pub[$publication->publicationid]->firsname . ' ' . $authors_pub[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
-                    <span>Цитирований в РИНЦ: 5</span>
-                    <span class="date">20.02.2026</span>
+                    <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>
+                    <span class="date">' . $publication->publish_date->format('d.m.Y') . '</span>
                     </div>
-                </div>
+                </div>';
+            }
+    ?>
 </div>
 <h2 class="section-h">Диссертации аспирантов</h2>
 <div class="publications">
-    <div class="post">
-            <div class="up-card">
-            <h2>Дуб как пример многолетнего растения</h2>
-            <span>Пишется</span>
-            <span>Автор: Василий Иванович Иванов</span>
-            </div>
-            <div class="down-card">
-            <span>Специальность: 1.5.9 Ботаника</span>
-            <span class="date">Утверждено 20.02.2026</span>
-            </div>
-    </div>
+    <?php
+        foreach ($dissertations as $disertation)
+            {
+                echo '<div class="post">
+                    <div class="up-card">
+                    <h2>' . $disertation->theme . '</h2>
+                    <span>' . $statuses[$disertation->dissertationid]->name . '</span>
+                    <span>Автор:' . $authors_dis[$disertation->dissertationid]->lastname . ' ' . $authors_dis[$disertation->dissertationid]->firsname . ' ' . $authors_dis[$disertation->dissertationid]->patronym . '</span>
+                    </div>
+                    <div class="down-card">
+                    <span>Специальность:' . $disertation->vak . '</span>
+                    <span class="date"> Утверждено ' . $disertation->date . '</span>
+                    </div>
+                </div>';
+            }
+    ?>
 </div>
 </div>

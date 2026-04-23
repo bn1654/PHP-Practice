@@ -22,6 +22,9 @@ class Publication extends Model
         'publish_date' => 'datetime',
     ];
 
+    public function get_directors_publications($director){
+        return Publication::whereHas('aspirant', function($q) {$q->where('director', $director);})->count();
+    }
 
    public function aspirant()
 {
