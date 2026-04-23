@@ -1,4 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteRule ^(.*)$ pop-it-mvc/$1 [L]
-</IfModule>

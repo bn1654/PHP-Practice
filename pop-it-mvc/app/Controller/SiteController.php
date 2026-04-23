@@ -12,13 +12,9 @@ class SiteController
 {
    public function index(Request $request): string
     {
-        app()->route->redirect('/hello');
+        return new View('site.hello');
     }
 
-   public function hello(): string
-   {
-       return new View('site.admin');
-   }
 
    public function aspirants(): string
    {

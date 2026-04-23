@@ -5,7 +5,7 @@ declare(strict_types=1);
 session_start();
 
 try {
-   require __DIR__ . '/../../vendor/autoload.php';
+   require __DIR__ . '/../vendor/autoload.php';
    $app = require_once __DIR__ . '/../core/bootstrap.php';
    $app->run();
 } catch (\Throwable $exception) {

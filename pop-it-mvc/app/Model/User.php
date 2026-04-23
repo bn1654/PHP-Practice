@@ -27,7 +27,7 @@ class User extends Model implements IdentityInterface
 
       public function findIdentity(int $id)
    {
-       return self::where('id', $id)->first();
+       return self::where('userid', $id)->first();
    }
 
    public function getId(): int

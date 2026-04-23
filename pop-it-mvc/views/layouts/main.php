@@ -14,11 +14,11 @@
    <nav>
     <div>
        <a href="<?= app()->route->getUrl('/hello') ?>" class="logo">Аспирантура</a>
-       <a href=#>Публикации</a>
-       <a href=#>Диссертации</a>
-       <a href=#>Научные руководители</a>
-       <a href=#>Аспиранты</a>
-       <a href=#>Отчетность</a>
+       <a href="<?= app()->route->getUrl('/publications') ?>">Публикации</a>
+       <a href="<?= app()->route->getUrl('/hello') ?>">Диссертации</a>
+       <a href="<?= app()->route->getUrl('/hello') ?>">Научные руководители</a>
+       <a href="<?= app()->route->getUrl('/hello') ?>">Аспиранты</a>
+       <a href="<?= app()->route->getUrl('/hello') ?>">Отчетность</a>
 </div>
        <div>
        <?php
