@@ -2,7 +2,7 @@
     <div class="page-title">
         <h1>Все наши научные руководители</h1>
         <form method="get">
-            <input type="text" placeholder="Поиск...">
+            <input type="text" name='search' placeholder="Поиск...">
         </form>
     </div>
     <div class="publications">

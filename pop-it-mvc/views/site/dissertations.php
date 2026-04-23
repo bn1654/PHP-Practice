@@ -6,38 +6,22 @@
         </form>
     </div>
     <div class="publications">
-    <div class="post">
-            <div class="up-card">
-            <h2>Дуб как пример многолетнего растения</h2>
-            <span>Пишется</span>
-            <span>Автор: Василий Иванович Иванов</span>
-            </div>
-            <div class="down-card">
-            <span>Специальность: 1.5.9 Ботаника</span>
-            <span class="date">Утверждено 20.02.2026</span>
-            </div>
-    </div>
-    <div class="post">
-            <div class="up-card">
-            <h2>Дуб как пример многолетнего растения</h2>
-            <span>Пишется</span>
-            <span>Автор: Василий Иванович Иванов</span>
-            </div>
-            <div class="down-card">
-            <span>Специальность: 1.5.9 Ботаника</span>
-            <span class="date">Утверждено 20.02.2026</span>
-            </div>
-    </div>
-    <div class="post">
-            <div class="up-card">
-            <h2>Дуб как пример многолетнего растения</h2>
-            <span>Пишется</span>
-            <span>Автор: Василий Иванович Иванов</span>
-            </div>
-            <div class="down-card">
-            <span>Специальность: 1.5.9 Ботаника</span>
-            <span class="date">Утверждено 20.02.2026</span>
-            </div>
-    </div>
+        <?php
+        foreach ($dissertations as $disertation)
+            {
+                echo '<div class="post">
+                    <div class="up-card">
+                    <h2>' . $disertation->theme . '</h2>
+                    <span>' . $statuses[$disertation->dissertationid]->name . '</span>
+                    <span>Автор:' . $authors[$disertation->dissertationid]->lastname . ' ' . $authors[$disertation->dissertationid]->firsname . ' ' . $authors[$disertation->dissertationid]->patronym . '</span>
+                    </div>
+                    <div class="down-card">
+                    <span>Специальность:' . $disertation->vak . '</span>
+                    <span class="date"> Утверждено ' . $disertation->date . '</span>
+                    </div>
+                </div>';
+            }
+    ?>
+    
 </div>
 </div>

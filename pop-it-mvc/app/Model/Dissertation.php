@@ -5,16 +5,16 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Publication extends Model
+class Dissertation extends Model
 {
    use HasFactory;
    public $timestamps = false;
 
    protected $fillable = [
        'theme',
-       'publisher',
-       'publish_date',
-       'index_RINC',
+       'status',
+       'date',
+       'vak',
        'authorid'
    ];
 }

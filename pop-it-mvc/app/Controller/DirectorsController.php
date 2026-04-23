@@ -10,8 +10,14 @@ use Src\Request;
 class DirectorsController
 {
    public function all(Request $request): string
-    {
+    {   
         $directors = Scientific_director::all();
+
+        if($request->get('search')){
+            $search = trim($request->get('search'));
+           $directors = Scientific_director::where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%")->get();
+        }
+
         return new View('site.scientific_directors', ['directors' => $directors]);
     }
 
