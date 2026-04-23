@@ -10,9 +10,11 @@ class User extends Model implements IdentityInterface
 {
    use HasFactory;
 
+   protected $primaryKey = 'userid';
+   public $incrementing = true;
+    protected $keyType = 'int';
    public $timestamps = false;
    protected $fillable = [
-       'name',
        'login',
        'password',
        'role'
@@ -33,7 +35,7 @@ class User extends Model implements IdentityInterface
 
    public function getId(): int
    {
-       return $this->id;
+       return $this->userid;
    }
 
    public function attemptIdentity(array $credentials)

@@ -17,12 +17,12 @@
     <?php
         foreach ($aspirants as $aspirant)
             {
-                echo '<div class="aspirant">
+                echo '<a href=' . app()->route->getUrl("/aspirant?id={$aspirant->aspirantid}") . '><div class="aspirant">
             <div>
             <h2>' . $aspirant->lastname . ' ' . $aspirant->firsname . ' ' . $aspirant->patronym . '</h2>
             <span>Научный руководитель:<br>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</span>
             </div>
-        </div>';
+        </div></a>';
             }
     ?>
 </div>

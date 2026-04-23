@@ -5,11 +5,18 @@
 <form method="post">
    <div class='inputgr'>
    <label>Логин <input type="text" name="login"></label>
-   <label>Роль <input type="text" name="name"></label>
+   <label>Роль <select name="role">
+            <?php
+        foreach ($roles as $role)
+            {
+                echo '<option value="' . $role->roleid . '">' . $role->name . '</option>';
+            }
+        ?>
+</select></label>
 </div>
    <div class='inputgr'>
    <label>Пароль <input type="password" name="password"></label>
-   <label>Повторите пароль <input type="password" name="password"></label>
+   <label>Повторите пароль <input type="password" name="password2"></label>
 </div>
    <button>Зарегистрировать</button>
 </form>

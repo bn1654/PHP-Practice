@@ -9,7 +9,7 @@
             echo '
             <span>Научные публикации: ' . $publications->count() .'</span>
             <span>Диссертации: ' . $dissertations->count() .'</span>
-           <span>Научный руквовдитель:<br>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</span>
+           <span>Научный руквовдитель:<br><a href=' . app()->route->getUrl("/director?id={$director->directorid}") . '>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</a></span>
         </div>'
         ?>
     </div>
