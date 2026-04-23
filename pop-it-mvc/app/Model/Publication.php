@@ -18,6 +18,11 @@ class Publication extends Model
        'authorid'
    ];
 
+   protected $casts = [
+        'publish_date' => 'datetime',
+    ];
+
+
    public function aspirant()
 {
     return $this->belongsTo(Aspirant::class, 'authorid', 'aspirantid');

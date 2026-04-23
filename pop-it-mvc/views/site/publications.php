@@ -17,7 +17,7 @@
                     </div>
                     <div class="down-card">
                     <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>
-                    <span class="date">' . $publication->publish_date . '</span>
+                    <span class="date">' . $publication->publish_date->format('d.m.Y') . '</span>
                     </div>
                 </div>';
             }

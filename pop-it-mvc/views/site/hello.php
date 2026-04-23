@@ -2,46 +2,38 @@
 <div>
     <h1>Последние опубликованные научные работы</h1>
     <div class="posts">
-    <div class="post">
+    <?php
+        foreach ($publications as $publication)
+            {
+                echo '<div class="post">
                     <div class="up-card">
-                    <h2>Дуб как пример многолетнего растения</h2>
-                    <span>Умный издатель</span>
-                    <span>Автор: Василий Иванович Иванов</span>
+                    <h2>' . $publication->theme . '</h2>
+                    <span>' . $publication->publisher . '</span>
+                    <span>Автор:' . $authors[$publication->publicationid]->lastname . ' ' . $authors[$publication->publicationid]->firsname . ' ' . $authors[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
-                    <span>Цитирований в РИНЦ: 5</span>
-                    <span class="date">20.02.2026</span>
+                    <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>
+                    <span class="date">' . $publication->publish_date->format('d.m.Y') . '</span>
                     </div>
-                </div>
-
-    <div class="post">
-                <div class="up-card">
-                <h2>Дуб как пример многолетнего растения</h2>
-                <span>Умный издатель</span>
-                <span>Автор: Василий Иванович Иванов</span>
-                </div>
-                <div class="down-card">
-                <span>Цитирований в РИНЦ: 5</span>
-                <span class="date">20.02.2026</span>
-                </div>
-            </div>
+                </div>';
+            }
+    ?>
     </div>
 </div>
     <div>
     <h1>Наши научные руководители</h1>
     <div class="directors">
-        <div class="director">
+        <?php
+        foreach ($directors as $director)
+            {
+                echo '<div class="director">
             <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
+            <h2>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</h2>
+            <span>Аспирантов:' . $director->get_aspirants_count() . '</span>
             </div>
-        </div>
-        <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
+        </div>';
+            }
+    ?>
     </div>
     </div>
 </div>

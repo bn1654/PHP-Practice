@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Aspirant;
 use Model\Scientific_director;
 use Src\View;
 use Src\Request;
