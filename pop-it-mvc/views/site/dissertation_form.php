@@ -8,22 +8,31 @@
        <label>Тема<input type="text" name="theme"></label>
 </div>
        <div class='inputgr'>
-       <label>Статус <input type="text" name="status" list="status">
-    <datalist id="status">
-            <option value="Иван Иванович Иванов"></option>
-            <option value="Иван Иванович Иванов"></option>
-        </datalist></label>
+       <label>Статус <select name="status">
+            <?php
+        foreach ($statuses as $status)
+            {
+                echo '<option value="' . $status->statusid . '">' . $status->name . '</option>';
+            }
+        ?>
+</select></label>
 
-       <label>Автор <input type="text" name="author" list="author-data">
+       <label>Автор <input type="text" name="authorid" list="author-data">
     <datalist id="author-data">
-            <option value="Иван Иванович Иванов"></option>
-            <option value="Иван Иванович Иванов"></option>
+            <?php
+        foreach ($authors as $author)
+            {
+                echo '<option value="' . $author->aspirantid . ' - ' . $author->firsname . ' ' . $author->patronym . ' ' . $author->lastname . '"></option>';
+            }
+        ?>
         </datalist></label>
 </div>
 
        <div class='inputgr'>
-       <label>Дата утверждения <input type="date" name="patronym"></label>
-       <label>Специальность ВАК <input type="text" name="patronym"></label>
+       <label>Дата утверждения <input type="date" name="date"></label>
+       <label>Специальность ВАК <select name="vak">
+         <option value="1.5.9 Ботаника">1.5.9 Ботаника</option>
+       </select></label>
 </div>
 
        <button>Добавить</button>

@@ -26,9 +26,20 @@ class DissertationsController
     }
 
 
-   public function add(): string
+   public function add(Request $request): string
    {
-    return new View('site.dissertation_form');
+    if ($request->method==='POST' ){
+        $request_idea = $request->all();
+            $request_idea['authorid'] = explode(' -', $request_idea['authorid'])[0];
+
+            if(Dissertation::create($request_idea))
+           {app()->route->redirect('/dissertations');}
+       }
+    
+    $authors = Aspirant::all();
+    $statuses = Status::all();
+
+    return new View('site.dissertation_form', ['authors' => $authors, 'statuses' => $statuses]);
    }
 
    
