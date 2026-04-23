@@ -2,7 +2,7 @@
     <div class="page-title">
         <h1>Все наши научные публикации</h1>
         <form method="get">
-            <input type="text" placeholder="Поиск...">
+            <input type="text" name="search" placeholder="Поиск...">
         </form>
     </div>
     <div class="publications">
@@ -13,7 +13,7 @@
                     <div class="up-card">
                     <h2>' . $publication->theme . '</h2>
                     <span>' . $publication->publisher . '</span>
-                    <span>Автор:' . $publication->authorid . '</span>
+                    <span>Автор:' . $authors[$publication->publicationid]->lastname . ' ' . $authors[$publication->publicationid]->firsname . ' ' . $authors[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>

@@ -17,4 +17,9 @@ class Publication extends Model
        'index_RINC',
        'authorid'
    ];
+
+   public function aspirant()
+{
+    return $this->belongsTo(Aspirant::class, 'authorid', 'aspirantid');
+}
 }

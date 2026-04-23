@@ -21,6 +21,10 @@ class DissertationsController
             $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
         }
         
+        if($request->get('search')){
+            $search = trim($request->get('search'));
+           $disertations = Dissertation::where('theme', 'LIKE', "%{$search}%")->orWhere('vak', 'LIKE', "%{$search}%")->orWhereHas('aspirant', function($query) use ($search) {$query->where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%");})->get();
+        }
 
         return new View('site.dissertations', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors]);
     }

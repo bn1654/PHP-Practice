@@ -17,6 +17,12 @@ class AspirantsController
         foreach ($aspirants as $aspirant){
             $aspirant_directors[$aspirant->aspirantid] = Scientific_director::where('directorid', $aspirant->director)->first();
         }
+
+        if($request->get('search')){
+            $search = trim($request->get('search'));
+           $aspirants = Aspirant::where('firsname', 'LIKE', "%{$search}%")->orWhere('lastname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%")->orWhereHas('director', function($query) use ($search) {$query->where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%");})->get();
+        }
+
         return new View('site.aspirants', ['aspirants' => $aspirants, 'directors' => $aspirant_directors]);
     }
 

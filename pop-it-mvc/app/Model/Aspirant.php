@@ -2,6 +2,7 @@
 
 namespace Model;
 
+use Model\Scientific_director;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,4 +17,9 @@ class Aspirant extends Model
        'patronym',
        'director'
    ];
+
+   public function director()
+{
+    return $this->belongsTo(Scientific_director::class, 'director', 'directorid');
+}
 }
