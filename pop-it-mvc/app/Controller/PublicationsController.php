@@ -20,8 +20,10 @@ class PublicationsController
         }
 
         if($request->get('search')){
-            $search = trim($request->get('search'));
-           $publications = Publication::where('theme', 'LIKE', "%{$search}%")->orWhere('publisher', 'LIKE', "%{$search}%")->orWhereHas('aspirant', function($query) use ($search) {$query->where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%");})->get();
+            $search = explode(trim($request->get('search')), ' ');
+            foreach($search as $s){
+           $publications = Publication::where('theme', 'LIKE', "%{$s}%")->orWhere('publisher', 'LIKE', "%{$s}%")->orWhereHas('aspirant', function($query) use ($s) {$query->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");})->get();
+            }
         }
 
         return new View('site.publications', ['publications' => $publications, 'authors' => $authors]);

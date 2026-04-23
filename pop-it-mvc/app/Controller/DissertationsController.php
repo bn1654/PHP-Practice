@@ -22,8 +22,10 @@ class DissertationsController
         }
         
         if($request->get('search')){
-            $search = trim($request->get('search'));
-           $disertations = Dissertation::where('theme', 'LIKE', "%{$search}%")->orWhere('vak', 'LIKE', "%{$search}%")->orWhereHas('aspirant', function($query) use ($search) {$query->where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%");})->get();
+            $search = explode(trim($request->get('search')), ' ');
+            foreach($search as $s){
+           $disertations = Dissertation::where('theme', 'LIKE', "%{$s}%")->orWhere('vak', 'LIKE', "%{$s}%")->orWhereHas('aspirant', function($query) use ($s) {$query->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");})->get();
+            }
         }
 
         return new View('site.dissertations', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors]);

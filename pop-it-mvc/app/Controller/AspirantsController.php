@@ -19,9 +19,10 @@ class AspirantsController
         }
 
         if($request->get('search')){
-            $search = trim($request->get('search'));
-           $aspirants = Aspirant::where('firsname', 'LIKE', "%{$search}%")->orWhere('lastname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%")->orWhereHas('director', function($query) use ($search) {$query->where('lastname', 'LIKE', "%{$search}%")->orWhere('firsname', 'LIKE', "%{$search}%")->orWhere('patronym', 'LIKE', "%{$search}%");})->get();
-        }
+           $search = explode(trim($request->get('search')), ' ');
+            foreach($search as $s){
+           $aspirants = Aspirant::where('firsname', 'LIKE', "%{$s}%")->orWhere('lastname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%")->orWhereHas('director', function($query) use ($s) {$query->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");})->get();
+        }}
 
         return new View('site.aspirants', ['aspirants' => $aspirants, 'directors' => $aspirant_directors]);
     }
