@@ -16,11 +16,6 @@ class SiteController
     }
 
 
-   public function aspirants(): string
-   {
-    return new View('site.aspirants');
-   }
-
    
 
 }

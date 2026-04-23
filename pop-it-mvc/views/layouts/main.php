@@ -13,12 +13,12 @@
 <header>
    <nav>
     <div>
-       <a href="<?= app()->route->getUrl('/hello') ?>" class="logo">Аспирантура</a>
+       <a href="<?= app()->route->getUrl('/') ?>" class="logo">Аспирантура</a>
        <a href="<?= app()->route->getUrl('/publications') ?>">Публикации</a>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Диссертации</a>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Научные руководители</a>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Аспиранты</a>
-       <a href="<?= app()->route->getUrl('/hello') ?>">Отчетность</a>
+       <a href="<?= app()->route->getUrl('/dissertations') ?>">Диссертации</a>
+       <a href="<?= app()->route->getUrl('/directors') ?>">Научные руководители</a>
+       <a href="<?= app()->route->getUrl('/aspirants') ?>">Аспиранты</a>
+       <a href="<?= app()->route->getUrl('/reporting') ?>">Отчетность</a>
 </div>
        <div>
        <?php
