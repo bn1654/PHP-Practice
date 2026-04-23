@@ -1,18 +1,31 @@
-<div>
-<h2>Вход</h2>
+<div class="form-wrap">
+<div class="add-form">
+<h2>Добавить диссертацию</h2>
 <h3><?= $message ?? ''; ?></h3>
 
-<h3><?= app()->auth->user()->name ?? ''; ?></h3>
-<?php
-if (!app()->auth::check()):
-   ?>
    <form method="post">
-       <label>Тема<input type="firstname" name="firstname"></label>
-       <label>Статус <input type="lastname" name="lastname"></label>
-       <label>Автор <input type="patronym" name="patronym"></label>
-       <label>Дата утверждения <input type="patronym" name="patronym"></label>
-       <label>Специальность ВАК <input type="patronym" name="patronym"></label>
+    <div class='inputgr'>
+       <label>Тема<input type="text" name="theme"></label>
+</div>
+       <div class='inputgr'>
+       <label>Статус <input type="text" name="status" list="status">
+    <datalist id="status">
+            <option value="Иван Иванович Иванов"></option>
+            <option value="Иван Иванович Иванов"></option>
+        </datalist></label>
+
+       <label>Автор <input type="text" name="author" list="author-data">
+    <datalist id="author-data">
+            <option value="Иван Иванович Иванов"></option>
+            <option value="Иван Иванович Иванов"></option>
+        </datalist></label>
+</div>
+
+       <div class='inputgr'>
+       <label>Дата утверждения <input type="date" name="patronym"></label>
+       <label>Специальность ВАК <input type="text" name="patronym"></label>
+</div>
+
        <button>Добавить</button>
    </form>
-<?php endif;?>
 </div>

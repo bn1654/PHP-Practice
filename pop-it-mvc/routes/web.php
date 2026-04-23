@@ -2,6 +2,7 @@
 
 use Src\Route;
 
+Route::add ('GET', '', [Controller\SiteController::class, 'index']);
 Route::add('GET', '/hello', [Controller\SiteController::class, 'hello']);
 Route::add(['GET', 'POST'], '/signup', [Controller\UserController::class, 'signup'])
    ->middleware('auth');

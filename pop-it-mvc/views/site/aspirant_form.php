@@ -1,17 +1,19 @@
-<div>
-<h2>Вход</h2>
-<h3><?= $message ?? ''; ?></h3>
+<div class="form-wrap">
+<div class="add-form">
+<h2>Добавить аспиранта</h2>
 
-<h3><?= app()->auth->user()->name ?? ''; ?></h3>
-<?php
-if (!app()->auth::check()):
-   ?>
    <form method="post">
-       <label>Имя <input type="firstname" name="firstname"></label>
-       <label>Фамилия <input type="lastname" name="lastname"></label>
-       <label>Отчество <input type="patronym" name="patronym"></label>
-       <label>Научный руководитель <input type="patronym" name="patronym"></label>
+        <div class='inputgr'>
+       <label>Имя <input type="text" name="firstname"></label>
+       <label>Фамилия <input type="text" name="lastname"></label>
+       <label>Отчество <input type="text" name="patronym"></label>
+</div>
+       <label>Научный руководитель <input type="text" name="director" list="data">
+       <datalist id="data">
+            <option value="Иван Иванович Иванов"></option>
+            <option value="Иван Иванович Иванов"></option>
+        </datalist></label>
        <button>Добавить</button>
    </form>
-<?php endif;?>
+</div>
 </div>

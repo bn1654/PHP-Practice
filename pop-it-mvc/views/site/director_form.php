@@ -1,16 +1,15 @@
-<div>
-<h2>Вход</h2>
+<div class="form-wrap">
+<div class="add-form">
+<h2>Добавить научного руководителя</h2>
 <h3><?= $message ?? ''; ?></h3>
-
-<h3><?= app()->auth->user()->name ?? ''; ?></h3>
-<?php
-if (!app()->auth::check()):
-   ?>
    <form method="post">
+    <div class='inputgr'>
        <label>Имя <input type="firstname" name="firstname"></label>
        <label>Фамилия <input type="lastname" name="lastname"></label>
        <label>Отчество <input type="patronym" name="patronym"></label>
+</div>
        <button>Добавить</button>
    </form>
-<?php endif;?>
 </div>
+</div>
+

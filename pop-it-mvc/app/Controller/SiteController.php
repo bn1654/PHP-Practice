@@ -12,21 +12,12 @@ class SiteController
 {
    public function index(Request $request): string
     {
-        if($request->id != 0){
-        $posts = Post::where('id', $request->id)->get();
-        }
-        else{
-        $posts = Post::all();
-        }
-        return (new View())->render('site.post', ['posts' => $posts]);
+        app()->route->redirect('/hello');
     }
-
-
-
 
    public function hello(): string
    {
-       return new View('site.aspirant');
+       return new View('site.publication_form');
    }
 
    public function aspirants(): string

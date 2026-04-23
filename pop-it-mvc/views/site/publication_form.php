@@ -1,18 +1,21 @@
-<div>
-<h2>Вход</h2>
+<div class="form-wrap">
+<div class="add-form">
+<h2>Добавить научную публикацию</h2>
 <h3><?= $message ?? ''; ?></h3>
-
-<h3><?= app()->auth->user()->name ?? ''; ?></h3>
-<?php
-if (!app()->auth::check()):
-   ?>
    <form method="post">
-       <label>Название<input type="firstname" name="firstname"></label>
-       <label>Издатель <input type="lastname" name="lastname"></label>
-       <label>Автор <input type="patronym" name="patronym"></label>
-       <label>Дата публикации <input type="patronym" name="patronym"></label>
-       <label>Индекс РИНЦ <input type="patronym" name="patronym"></label>
+       <div class='inputgr'>
+       <label>Название<input type="text" name="name"></label>
+</div>
+       <div class='inputgr'>
+       <label>Издатель <input type="text" name="publisher"></label>
+       <label>Автор <input type="text" name="author"></label>
+</div>
+       <div class='inputgr'>
+       <label>Дата публикации <input type="date" name="public_date"></label>
+       <label>Индекс РИНЦ <input type="number" name="RINC"></label>
+</div>
        <button>Добавить</button>
    </form>
-<?php endif;?>
 </div>
+</div>
+
