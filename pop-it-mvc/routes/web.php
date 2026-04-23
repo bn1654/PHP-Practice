@@ -7,4 +7,5 @@ Route::add(['GET', 'POST'], '/signup', [Controller\UserController::class, 'signu
    ->middleware('auth');
 Route::add(['GET', 'POST'], '/login', [Controller\UserController::class, 'login']);
 Route::add('GET', '/logout', [Controller\UserController::class, 'logout']);
+Route::add('GET', '/aspirants', [Controller\SiteController::class, 'aspirants']);
 

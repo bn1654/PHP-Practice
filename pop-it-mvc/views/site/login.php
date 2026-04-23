@@ -1,4 +1,5 @@
-<div>
+<div class="form-wrap">
+<div class="add-form">
 <h2>Вход</h2>
 <h3><?= $message ?? ''; ?></h3>
 
@@ -13,3 +14,4 @@ if (!app()->auth::check()):
    </form>
 <?php endif;?>
 </div>
+<div>

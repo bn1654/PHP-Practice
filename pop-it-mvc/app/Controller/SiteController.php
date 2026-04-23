@@ -29,6 +29,11 @@ class SiteController
        return new View('site.aspirant');
    }
 
+   public function aspirants(): string
+   {
+    return new View('site.aspirants');
+   }
+
    
 
 }
