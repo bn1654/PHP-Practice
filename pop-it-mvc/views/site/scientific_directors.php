@@ -6,12 +6,18 @@
         </form>
     </div>
     <div class="publications">
-    <div class="director">
+        <?php
+        foreach ($directors as $director)
+            {
+                echo '<div class="director">
             <div>
-            <h2>Георгий Георгиевич Героев</h2>
+            <h2>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</h2>
             <span>Аспирантов: 8</span>
             </div>
-        </div>
+        </div>';
+            }
+    ?>
+    
     <div class="director">
             <div>
             <h2>Георгий Георгиевич Героев</h2>

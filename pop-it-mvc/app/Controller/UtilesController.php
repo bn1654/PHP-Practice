@@ -19,7 +19,4 @@ class UtilesController
    {
     return new View('site.admin');
    }
-
-
-   
 }

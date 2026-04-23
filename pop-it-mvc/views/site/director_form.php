@@ -4,9 +4,9 @@
 <h3><?= $message ?? ''; ?></h3>
    <form method="post">
     <div class='inputgr'>
-       <label>Имя <input type="firstname" name="firstname"></label>
-       <label>Фамилия <input type="lastname" name="lastname"></label>
-       <label>Отчество <input type="patronym" name="patronym"></label>
+       <label>Имя <input type="text" name="firsname"></label>
+       <label>Фамилия <input type="text" name="lastname"></label>
+       <label>Отчество <input type="text" name="patronym"></label>
 </div>
        <button>Добавить</button>
    </form>

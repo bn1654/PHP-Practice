@@ -1,0 +1,5 @@
+.env.example
+README.MD
+composer.phar
+./vendor/
+.idea
