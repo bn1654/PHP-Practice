@@ -17,7 +17,7 @@ class SiteController
 
    public function hello(): string
    {
-       return new View('site.publication_form');
+       return new View('site.admin');
    }
 
    public function aspirants(): string

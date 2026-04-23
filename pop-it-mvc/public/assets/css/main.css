@@ -183,7 +183,11 @@ main {
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    min-width: 26vw;
+    min-width: 15vw;
+}
+
+.page-title label {
+    font-size: 24px;
 }
 
 .aspirant {
@@ -292,4 +296,26 @@ main {
 .inputgr{
     display: flex;
     gap: 35px;
+}
+
+.user {
+    background-color: #D9D9D9;
+    padding-top: 5px;
+    padding-bottom: 45px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 25%;
+}
+
+.user h2{
+    font-weight: 520;
+    font-size: 24px;
+}
+
+.user > span{
+    font-size: 20px;
 }

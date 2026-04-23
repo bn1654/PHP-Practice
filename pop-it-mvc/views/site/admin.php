@@ -1,11 +1,11 @@
 <div>
-    <div>
+    <div class="page-title">
         <h1>Управление пользователями</h1>
         <form method="get">
             <input type="text" placeholder="Поиск...">
         </form>
     </div>
-    <div>
+    <div class="publications">
     <div class="user">
             <div>
             <h2>admin</h2>
