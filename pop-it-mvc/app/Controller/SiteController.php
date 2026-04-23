@@ -26,7 +26,7 @@ class SiteController
 
    public function hello(): string
    {
-       return new View('site.aspirants');
+       return new View('site.aspirant');
    }
 
    

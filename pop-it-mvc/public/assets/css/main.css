@@ -28,6 +28,10 @@ h1 {
     font-weight: 100;
 }
 
+h2 {
+    font-weight: 100;
+}
+
 header a {
     color:white;
     text-decoration: none;
@@ -202,4 +206,26 @@ main {
 
 .aspirant > span{
     font-size: 20px;
+}
+
+.person-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 32px;
+}
+
+.person-info h1 {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.statistic {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-h {
+    font-size: 36px;
 }
