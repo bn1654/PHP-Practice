@@ -4,7 +4,7 @@
 <h3><?= $message ?? ''; ?></h3>
    <form method="post">
        <div class='inputgr'>
-       <label>Название<input type="text" name="name"></label>
+       <label>Название<input type="text" name="theme"></label>
 </div>
        <div class='inputgr'>
        <label>Издатель <input type="text" name="publisher"></label>

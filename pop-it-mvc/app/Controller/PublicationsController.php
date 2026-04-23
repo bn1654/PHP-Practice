@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-
+use Model\Publication;
 use Src\View;
 use Src\Request;
 
@@ -11,7 +11,8 @@ class PublicationsController
 {
    public function all(Request $request): string
     {
-        return new View('site.publications');
+        $publications = Publication::all();
+        return new View('site.publications', ['publications' => $publications]);
     }
 
 
