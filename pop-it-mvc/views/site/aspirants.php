@@ -6,29 +6,16 @@
         </form>
     </div>
     <div class="publications">
-    <div class="aspirant">
+        <?php
+        foreach ($aspirants as $aspirant)
+            {
+                echo '<div class="aspirant">
             <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
+            <h2>' . $aspirant->lastname . ' ' . $aspirant->firsname . ' ' . $aspirant->patronym . '</h2>
+            <span>Научный руководитель:<br>' . $directors[$aspirant->aspirantid]->lastname . ' ' . $directors[$aspirant->aspirantid]->firsname . ' ' . $directors[$aspirant->aspirantid]->patronym . '</span>
             </div>
-        </div>
-        <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
-        <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
-        <div class="aspirant">
-            <div>
-            <h2>Иван Иванович Иванов</h2>
-            <span>Научный руководитель:<br>Иван Иванович Иванов</span>
-            </div>
-        </div>
+        </div>';
+            }
+    ?>
 </div>
 </div>

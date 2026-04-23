@@ -4,14 +4,18 @@
 
    <form method="post">
         <div class='inputgr'>
-       <label>Имя <input type="text" name="firstname"></label>
+       <label>Имя <input type="text" name="firsname"></label>
        <label>Фамилия <input type="text" name="lastname"></label>
        <label>Отчество <input type="text" name="patronym"></label>
 </div>
        <label>Научный руководитель <input type="text" name="director" list="data">
        <datalist id="data">
-            <option value="Иван Иванович Иванов"></option>
-            <option value="Иван Иванович Иванов"></option>
+        <?php
+        foreach ($directors as $director)
+            {
+                echo '<option value="' . $director->directorid . ' - ' . $director->firsname . ' ' . $director->patronym . ' ' . $director->lastname . '"></option>';
+            }
+        ?>
         </datalist></label>
        <button>Добавить</button>
    </form>

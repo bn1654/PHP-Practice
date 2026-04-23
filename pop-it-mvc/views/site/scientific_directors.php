@@ -17,24 +17,5 @@
         </div>';
             }
     ?>
-    
-    <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
-        <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
-        <div class="director">
-            <div>
-            <h2>Георгий Георгиевич Героев</h2>
-            <span>Аспирантов: 8</span>
-            </div>
-        </div>
 </div>
 </div>
