@@ -3,6 +3,7 @@
 <h2>Добавить аспиранта</h2>
 
    <form method="post">
+    <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class='inputgr'>
        <label>Имя <input type="text" name="firsname"></label>
        <label>Фамилия <input type="text" name="lastname"></label>
