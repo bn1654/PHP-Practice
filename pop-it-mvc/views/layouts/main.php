@@ -45,7 +45,7 @@
        <?php
        else:
            ?>
-           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login . app()->auth::user()->role ?>)</a>
+           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
        <?php
        endif;
        ?>
