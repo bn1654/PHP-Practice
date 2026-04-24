@@ -14,11 +14,28 @@
    <nav>
     <div>
        <a href="<?= app()->route->getUrl('/') ?>" class="logo">Аспирантура</a>
-       <a href="<?= app()->route->getUrl('/publications') ?>">Публикации</a>
-       <a href="<?= app()->route->getUrl('/dissertations') ?>">Диссертации</a>
+       <?php
+       if (app()->auth::check() && app()->auth::user()->role == 1):
+           ?>
+           <a href="<?= app()->route->getUrl('/admin') ?>">Пользователи</a>
+       
+       <?php
+       else:
+           ?>
+           <a href="<?= app()->route->getUrl('/publications') ?>">Публикации</a>
+           <a href="<?= app()->route->getUrl('/dissertations') ?>">Диссертации</a>
+        <?php
+       endif;
+       ?>
        <a href="<?= app()->route->getUrl('/directors') ?>">Научные руководители</a>
        <a href="<?= app()->route->getUrl('/aspirants') ?>">Аспиранты</a>
+       <?php
+       if (app()->auth::check() && app()->auth::user()->role == 2):
+           ?>
        <a href="<?= app()->route->getUrl('/reporting') ?>">Отчетность</a>
+       <?php
+       endif;
+       ?>
 </div>
        <div>
        <?php
@@ -28,7 +45,7 @@
        <?php
        else:
            ?>
-           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
+           <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login . app()->auth::user()->role ?>)</a>
        <?php
        endif;
        ?>

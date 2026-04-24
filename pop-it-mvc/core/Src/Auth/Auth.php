@@ -45,6 +45,7 @@ class Auth
        return self::$user->findIdentity($id);
    }
 
+
    //Проверка является ли текущий пользователь аутентифицированным
    public static function check(): bool
    {
