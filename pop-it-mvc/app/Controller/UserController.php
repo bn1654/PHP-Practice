@@ -7,6 +7,7 @@ use Model\Role;
 use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
+use Src\Validator\Validator;
 
 class UserController
 {
@@ -14,6 +15,20 @@ class UserController
    {
         $roles = Role::all();
        if ($request->method==='POST'){
+        $validator = new Validator($request->all(), [
+           'role' => ['required'],
+           'login' => ['required', 'unique:users,login'],
+           'password' => ['required']
+       ], [
+           'required' => 'Поле :field пусто',
+           'unique' => 'Поле :field должно быть уникально'
+       ]);
+
+        if($validator->fails()){
+           return new View('site.signup',
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'roles' => $roles]);
+       }
+
         if($request->password === $request->password2 && User::create($request->all()))
            app()->route->redirect('/admin');
         else

@@ -10,5 +10,12 @@ return [
        'is_admin' => \Middlewares\AdminMiddleware::class,
        'is_employee' => \Middlewares\EmployeeMiddleware::class,
        'is_guest' => \Middlewares\GuestMiddleware::class,
-   ]
+   ],
+   'routeAppMiddleware' => [
+        'trim' => \Middlewares\TrimMiddleware::class,
+    ],
+   'validators' => [
+       'required' => \Validators\RequireValidator::class,
+       'unique' => \Validators\UniqueValidator::class
+   ],
 ];
