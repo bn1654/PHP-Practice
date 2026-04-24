@@ -6,23 +6,13 @@
         </form>
     </div>
     <div class="publications">
-    <div class="user">
+     <?php   foreach($users as $user){
+     echo '<div class="user">
             <div>
-            <h2>admin</h2>
-            <span>Роль: Администратор</span>
+            <h2>' . $user->login . '</h2>
+            <span>Роль: ' . $roles[$user->userid]->name . '</span>
             </div>
-        </div>
-        <div class="user">
-            <div>
-            <h2>employee</h2>
-            <span>Роль: Научный сотрудник</span>
-            </div>
-        </div>
-        <div class="user">
-            <div>
-            <h2>employee2</h2>
-            <span>Роль: Научный сотрудник</span>
-            </div>
-        </div>
+        </div>'; } 
+        ?>
 </div>
 </div>
