@@ -9,6 +9,7 @@ use Model\Status;
 use Model\Scientific_director;
 use Src\View;
 use Src\Request;
+use Src\Validator\Validator;
 
 
 class DirectorsController
@@ -34,8 +35,24 @@ class DirectorsController
 
    public function add(Request $request): string
    {
-        if ($request->method==='POST' && Scientific_director::create($request->all())){
-           app()->route->redirect('/directors');
+        if ($request->method==='POST'){
+            $validator = new Validator($request->all(), [
+           'firsname' => ['required'],
+           'lastname' => ['required'],
+           'patronym' => ['required']
+       ], [
+           'required' => 'Поле :field пусто',
+           'unique' => 'Поле :field должно быть уникально'
+       ]);
+
+        if($validator->fails()){
+           return new View('site.director_form',
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+       }
+
+
+         if(Scientific_director::create($request->all()))
+           {app()->route->redirect('/directors');}
        }
         return new View('site.director_form');
    }

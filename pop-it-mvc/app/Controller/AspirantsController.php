@@ -9,7 +9,7 @@ use Model\Dissertation;
 use Model\Status;
 use Src\View;
 use Src\Request;
-
+use Src\Validator\Validator;
 
 class AspirantsController
 {
@@ -38,15 +38,31 @@ class AspirantsController
 
    public function add(Request $request): string
    {
+
+        $directors = Scientific_director::all();
     if ($request->method==='POST' ){
+        $validator = new Validator($request->all(), [
+           'firsname' => ['required'],
+           'lastname' => ['required'],
+           'patronym' => ['required'],
+           'director' => ['required']
+       ], [
+           'required' => 'Поле :field пусто',
+           'unique' => 'Поле :field должно быть уникально'
+       ]);
         $request_idea = $request->all();
             $request_idea['director'] = explode(' -', $request_idea['director'])[0];
+
+            if($validator->fails()){
+           return new View('site.aspirant_form',
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'directors' => $directors]);
+       }
 
             if(Aspirant::create($request_idea))
            {app()->route->redirect('/aspirants');}
        }
     
-    $directors = Scientific_director::all();
+
     
     return new View('site.aspirant_form', ['directors' => $directors]);
    }
