@@ -5,6 +5,9 @@
             <input type="text" name="search" placeholder="Поиск...">
         </form>
     </div>
+    <?php if(app()->auth::check() && app()->auth::user()->role == 2): ?>
+    <a class="add-button" href="<?= app()->route->getUrl('/publications/add') ?>">+ Добавить</a>
+    <?php endif; ?>
     <div class="publications">
     <?php
         foreach ($publications as $publication)

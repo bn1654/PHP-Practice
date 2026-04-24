@@ -1,10 +1,15 @@
 <div>
+    <div>
     <div class="page-title">
         <h1>Управление пользователями</h1>
+        
         <form method="get">
             <input type="text" placeholder="Поиск...">
         </form>
     </div>
+    <a class="add-button" href="<?= app()->route->getUrl('/signup') ?>">+ Добавить</a>
+</div>
+        
     <div class="publications">
      <?php   foreach($users as $user){
      echo '<div class="user">

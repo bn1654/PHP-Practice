@@ -9,7 +9,9 @@ class EmployeeMiddleware
 {
    public function handle(Request $request)
    {
-       if (Auth::user()->role != 2) {
+        $role = Auth::user()->role ?? 0;
+
+       if ($role != 2) {
            app()->route->redirect('/');
        }
    }
