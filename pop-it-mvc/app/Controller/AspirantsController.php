@@ -45,18 +45,19 @@ class AspirantsController
            'firsname' => ['required'],
            'lastname' => ['required'],
            'patronym' => ['required'],
-           'director' => ['required']
+           'director' => ['required', 'format', 'director_exists']
        ], [
-           'required' => 'Поле :field пусто',
-           'unique' => 'Поле :field должно быть уникально'
+           'required' => 'Поле пусто',
+           'format' => 'Поле должно соответствовать формату номер - Имя Отчество Фамилия',
+           'director_exists' => 'Такого директора не существует'
        ]);
-        $request_idea = $request->all();
-            $request_idea['director'] = explode(' -', $request_idea['director'])[0];
 
             if($validator->fails()){
            return new View('site.aspirant_form',
                ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'directors' => $directors]);
-       }
+       }    
+        $request_idea = $request->all();
+            $request_idea['director'] = explode(' -', $request_idea['director'])[0];
 
             if(Aspirant::create($request_idea))
            {app()->route->redirect('/aspirants');}

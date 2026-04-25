@@ -7,7 +7,7 @@ use Model\Aspirant;
 use Model\Status;
 use Src\View;
 use Src\Request;
-
+use Src\Validator\Validator;
 
 class DissertationsController
 {
@@ -38,7 +38,26 @@ class DissertationsController
 
    public function add(Request $request): string
    {
+        $authors = Aspirant::all();
+        $statuses = Status::all();
     if ($request->method==='POST' ){
+        $validator = new Validator($request->all(), [
+           'theme' => ['required'],
+           'status' => ['required'],
+           'vak' => ['required'],
+           'date' => ['required', 'date'],
+           'authorid' => ['required', 'format', 'aspirant_exists']
+       ], [
+           'required' => 'Поле :field пусто',
+           'format' => 'Поле :field должно соответствовать формату номер - Имя Отчество Фамилия',
+           'aspirant_exists' => ':field такого директора не существует',
+           'date' => ':field укажите верную дату'
+       ]);
+
+            if($validator->fails()){
+           return new View('site.dissertation_form',
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors, 'statuses' => $statuses]);
+       }    
         $request_idea = $request->all();
             $request_idea['authorid'] = explode(' -', $request_idea['authorid'])[0];
 
@@ -46,8 +65,7 @@ class DissertationsController
            {app()->route->redirect('/dissertations');}
        }
     
-    $authors = Aspirant::all();
-    $statuses = Status::all();
+
 
     return new View('site.dissertation_form', ['authors' => $authors, 'statuses' => $statuses]);
    }

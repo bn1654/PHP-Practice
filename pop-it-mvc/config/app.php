@@ -18,6 +18,10 @@ return [
     ],
    'validators' => [
        'required' => \Validators\RequireValidator::class,
-       'unique' => \Validators\UniqueValidator::class
+       'unique' => \Validators\UniqueValidator::class,
+       'director_exists' => \Validators\DirectorExistsValidator::class,
+       'format' => \Validators\FormatValidator::class,
+       'aspirant_exists' => \Validators\AspirantExistsValidator::class,
+       'date' => \Validators\DateValidator::class
    ],
 ];

@@ -6,7 +6,7 @@ use Model\Publication;
 use Model\Aspirant;
 use Src\View;
 use Src\Request;
-
+use Src\Validator\Validator;
 
 class PublicationsController
 {
@@ -36,7 +36,25 @@ class PublicationsController
 
    public function add(Request $request): string
    {
+    $authors = Aspirant::all();
     if ($request->method==='POST' ){
+        $validator = new Validator($request->all(), [
+           'theme' => ['required'],
+           'publisher' => ['required'],
+           'index_RINC' => ['required'],
+           'publish_date' => ['required', 'date'],
+           'authorid' => ['required', 'format', 'aspirant_exists']
+       ], [
+           'required' => 'Поле пусто',
+           'format' => 'Поле должно соответствовать формату номер - Имя Отчество Фамилия',
+           'aspirant_exists' => 'Такого директора не существует',
+           'date' => 'Укажите верную дату'
+       ]);
+
+            if($validator->fails()){
+           return new View('site.publication_form',
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors]);
+       }    
         $request_idea = $request->all();
             $request_idea['authorid'] = explode(' -', $request_idea['authorid'])[0];
 
@@ -44,7 +62,7 @@ class PublicationsController
            {app()->route->redirect('/publications');}
        }
     
-    $authors = Aspirant::all();
+
     
     return new View('site.publication_form', ['authors' => $authors]);
    }

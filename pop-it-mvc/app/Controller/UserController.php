@@ -18,10 +18,11 @@ class UserController
         $validator = new Validator($request->all(), [
            'role' => ['required'],
            'login' => ['required', 'unique:users,login'],
-           'password' => ['required']
+           'password' => ['required'],
+           'password2' => ['required']
        ], [
-           'required' => 'Поле :field пусто',
-           'unique' => 'Поле :field должно быть уникально'
+           'required' => 'Поле пусто',
+           'unique' => 'Поле должно быть уникально'
        ]);
 
         if($validator->fails()){
@@ -32,7 +33,7 @@ class UserController
         if($request->password === $request->password2 && User::create($request->all()))
            app()->route->redirect('/admin');
         else
-            return new View('site.signup',['message' => 'Пароли должны совпадать', 'roles' => $roles]);
+            return new View('site.signup',['message' => json_encode(['password2' => ['Пароли должны совпадать']], JSON_UNESCAPED_UNICODE), 'roles' => $roles]);
        }
        return new View('site.signup', ['roles' => $roles]);
    }
