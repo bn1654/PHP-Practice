@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: db
--- Время создания: Апр 24 2026 г., 12:59
+-- Время создания: Апр 25 2026 г., 09:15
 -- Версия сервера: 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- Версия PHP: 8.3.26
 
@@ -77,7 +77,11 @@ INSERT INTO `aspirants` (`aspirantid`, `lastname`, `firsname`, `patronym`, `dire
 (35, 'Сидорова', 'Ксения', 'Дмитриевна', 6),
 (36, 'Кузнецова', 'Валентина', 'Николаевна', 7),
 (37, 'Смирнов', 'Владимир', 'Александрович', 8),
-(38, 'Попова', 'Виктория', 'Сергеевна', 9);
+(38, 'Попова', 'Виктория', 'Сергеевна', 9),
+(39, 'Голубков', 'Борис', 'Рабочий', 14),
+(40, 'Голубков', 'Гагага', 'Работа', 8),
+(46, 'Гагага', 'Борис', 'Петрович', 9),
+(47, 'Гагага', 'Борис', 'Работа', 8);
 
 -- --------------------------------------------------------
 
@@ -169,7 +173,9 @@ INSERT INTO `publications` (`publicationid`, `theme`, `publisher`, `publish_date
 (22, 'Космические исследования и спутниковые системы', 'Авиакосмос', '2024-07-27', '48', 4),
 (23, 'Геймификация в образовании', 'Педагогика', '2023-10-09', '27', 6),
 (24, 'Квантовые вычисления: состояние и перспективы', 'Физика высоких технологий', '2025-08-01', '62', 14),
-(25, 'Социальные сети и политическая активность', 'Политология', '2024-11-11', '35', 9);
+(25, 'Социальные сети и политическая активность', 'Политология', '2024-11-11', '35', 9),
+(26, 'Как жить в этом жестоком мире', 'Какой то чел', '2026-04-09', '23', 39),
+(27, 'Как жить в этом жестоком мире', 'Какой то чел', '2026-04-26', '232', 11);
 
 -- --------------------------------------------------------
 
@@ -263,7 +269,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `login`, `password`, `role`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1),
+(2, 'georg', 'fc77dba827fcc88e0243404572c51325', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -325,7 +332,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `aspirants`
 --
 ALTER TABLE `aspirants`
-  MODIFY `aspirantid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `aspirantid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT для таблицы `dissertations`
@@ -337,7 +344,7 @@ ALTER TABLE `dissertations`
 -- AUTO_INCREMENT для таблицы `publications`
 --
 ALTER TABLE `publications`
-  MODIFY `publicationid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `publicationid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -349,7 +356,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `scientific_directors`
 --
 ALTER TABLE `scientific_directors`
-  MODIFY `directorid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `directorid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`
@@ -361,7 +368,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
