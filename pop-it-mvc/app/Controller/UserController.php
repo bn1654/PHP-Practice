@@ -6,7 +6,7 @@ use Model\User;
 use Model\Role;
 use Src\View;
 use Src\Request;
-use Src\Auth\Auth;
+use Auth\Auth;
 use Src\Validator\Validator;
 
 class UserController
