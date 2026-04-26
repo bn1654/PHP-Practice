@@ -27,6 +27,9 @@ class ApiController
    public function auth(Request $request): void 
    {
     $token = '';
+
+    if ($request->get('login') || $request->get('password')){
+
     if (Auth::attempt($request->all())) {
         $user = Auth::user();
         $token = Auth::generateApiToken($user);
@@ -34,6 +37,9 @@ class ApiController
    }else{
     (new View()->toJSON(['ERROR' => 'Неверный логин или пароль']));
     exit();
+   }}
+   else {
+        (new View())->toJSON(['ERROR' => 'Не предоставлено нужных данных']);
    }
    }
 

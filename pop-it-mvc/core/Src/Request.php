@@ -15,6 +15,15 @@ class Request
        $this->body = $_REQUEST;
        $this->method = $_SERVER['REQUEST_METHOD'];
        $this->headers = getallheaders() ?? [];
+
+       $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    if (strpos($contentType, 'application/json') !== false) {
+        $input = file_get_contents('php://input');
+        $jsonData = json_decode($input, true);
+        if (is_array($jsonData)) {
+            $this->body = array_merge($this->body, $jsonData);
+        }
+    }
    }
 
    public function all(): array
