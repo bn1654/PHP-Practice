@@ -17,7 +17,8 @@ class RouteProvider extends AbstractProvider
        $this->app->bind('route', Route::single()->setPrefix($this->app->settings->getRootPath()));
 
        if ($this->checkPrefix('/api')) {
-           //Если префикс адреса api то удаляем не нужные middleware
+
+       
            $this->app->settings->removeAppMiddleware('csrf');
            $this->app->settings->removeAppMiddleware('specialChars');
 
@@ -28,6 +29,7 @@ class RouteProvider extends AbstractProvider
            return;
        }
        $this->app->settings->removeAppMiddleware('json');
+       $this->app->settings->removeAppMiddleware('bearer');
 
         require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/web.php';
 
