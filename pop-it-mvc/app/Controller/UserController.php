@@ -30,9 +30,10 @@ class UserController
                ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'roles' => $roles]);
        }
 
-        if($request->password === $request->password2 && User::create($request->all()))
+        if($request->password === $request->password2 && User::create($request->all())){
            app()->route->redirect('/admin');
-        else
+            return false;}
+            else
             return new View('site.signup',['message' => json_encode(['password2' => ['Пароли должны совпадать']], JSON_UNESCAPED_UNICODE), 'roles' => $roles]);
        }
        return new View('site.signup', ['roles' => $roles]);

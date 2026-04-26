@@ -33,8 +33,9 @@ RUN echo "cd /var/www/html">>/home/$USER/.bashrc
 #Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-#Установка пакетов
-RUN composer install
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

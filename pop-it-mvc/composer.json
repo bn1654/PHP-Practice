@@ -16,8 +16,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.4 | ^8.0",
-        "illuminate/database": "13.x-dev",
-        "illuminate/events": "13.x-dev",
+        "illuminate/database": "10.x-dev",
+        "illuminate/events": "10.x-dev",
         "nikic/fast-route": "^2.0@dev",
         "bn1654/collect": "dev-master",
         "bn1654/auth": "dev-master"
@@ -27,6 +27,8 @@
             "Src\\": "core/Src/",
             "": "app/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0@dev"
     }
- 
- }
+}
