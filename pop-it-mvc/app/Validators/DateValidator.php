@@ -4,6 +4,7 @@ namespace Validators;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Validator\AbstractValidator;
+use DateTime;
 
 class DateValidator extends AbstractValidator
 {
@@ -12,8 +13,11 @@ class DateValidator extends AbstractValidator
 
    public function rule(): bool
    {
-        $today = date('d-m-Y');
-        $validate_value = strtotime($this->value);
-        return $today < $validate_value;
+         $today = new DateTime('today');
+         $inputDate = DateTime::createFromFormat('d-m-Y', $this->value);
+
+
+
+         return $inputDate <= $today;
    }
 }
