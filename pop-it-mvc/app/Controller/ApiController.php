@@ -3,6 +3,9 @@
 namespace Controller;
 
 use Model\Publication;
+use Model\Dissertation;
+use Model\Aspirant;
+use Model\Status;
 use Src\Request;
 use Src\View;
 use Auth\Auth;
@@ -32,5 +35,13 @@ class ApiController
     (new View()->toJSON(['ERROR' => 'Неверный логин или пароль']));
     exit();
    }
+   }
+
+   public function reports(Request $request): void 
+   {
+        $disertations = Dissertation::where('status', 3)->get();
+
+
+        (new View()->toJSON($disertations->toArray()));
    }
 }

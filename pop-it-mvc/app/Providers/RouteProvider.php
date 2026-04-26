@@ -47,9 +47,9 @@ class RouteProvider extends AbstractProvider
 
    private function checkPrefix(string $prefix): bool
    {
-       //Получение маршрута
+
        $uri = $this->getUri();
-       //Проверка на вхождение префикса
+
        return strpos($uri, $prefix) === 0;
    }
 }
