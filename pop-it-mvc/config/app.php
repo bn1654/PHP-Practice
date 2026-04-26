@@ -24,4 +24,11 @@ return [
        'aspirant_exists' => \Validators\AspirantExistsValidator::class,
        'date' => \Validators\DateValidator::class
    ],
+   'providers' => [
+   'kernel' => \Providers\KernelProvider::class,
+   'route' => \Providers\RouteProvider::class,
+   'db' => \Providers\DBProvider::class,
+   'auth' => \Providers\AuthProvider::class,
+],
+
 ];
