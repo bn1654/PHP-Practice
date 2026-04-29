@@ -7,12 +7,11 @@
         <div class="statistic">
             <?php
             echo '<span>Научные публикации аспирантов: ' . $publications->count() .'</span>
-            <span>Успешные защиты аспирантов: ' . $dissertations->where('status', 3)->count() .'</span>
-           <span> Аспирантов: ' . $director->get_aspirants_count() .'</span>'
+            <span>Успешные защиты аспирантов: ' . $dissertations->where('status', 3)->count() .'</span>'
            ?>
         </div>
     </div>
-<h2 class="section-h">Аспиранты</h2>
+<h2 class="section-h">Научный руководитель работ этих аспирантов</h2>
     <div class="publications">
     <?php
         foreach ($aspirants as $aspirant)
@@ -20,7 +19,6 @@
                 echo '<a href=' . app()->route->getUrl("/aspirant?id={$aspirant->aspirantid}") . '><div class="aspirant">
             <div>
             <h2>' . $aspirant->lastname . ' ' . $aspirant->firsname . ' ' . $aspirant->patronym . '</h2>
-            <span>Научный руководитель:<br>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</span>
             </div>
         </div></a>';
             }
@@ -36,6 +34,7 @@
                     <h2>' . $publication->theme . '</h2>
                     <span>' . $publication->publisher . '</span>
                     <span>Автор:' . $authors_pub[$publication->publicationid]->lastname . ' ' . $authors_pub[$publication->publicationid]->firsname . ' ' . $authors_pub[$publication->publicationid]->patronym . '</span>
+                    <span>Совтор:' . $coauthors_pub[$publication->publicationid]->lastname . ' ' . $coauthors_pub[$publication->publicationid]->firsname . ' ' . $coauthors_pub[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>
@@ -55,6 +54,7 @@
                     <h2>' . $disertation->theme . '</h2>
                     <span>' . $statuses[$disertation->dissertationid]->name . '</span>
                     <span>Автор:' . $authors_dis[$disertation->dissertationid]->lastname . ' ' . $authors_dis[$disertation->dissertationid]->firsname . ' ' . $authors_dis[$disertation->dissertationid]->patronym . '</span>
+                    <span>Научный руководитель:' . $coauthors_dis[$disertation->dissertationid]->lastname . ' ' . $coauthors_dis[$disertation->dissertationid]->firsname . ' ' . $coauthors_dis[$disertation->dissertationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Специальность:' . $disertation->vak . '</span>

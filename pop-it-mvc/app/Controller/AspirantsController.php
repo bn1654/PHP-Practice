@@ -83,11 +83,11 @@ class AspirantsController
     $coauthors_dis = [];
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
-            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->author)->first();
+            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->aspirant)->first();
             $coauthors_dis[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
 
-    return new View('site.aspirant', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirant' => $aspirant, 'authors_pub' => $authors_pub, 'authors_dis' => $authors_dis, 'statuses' => $statuses]);
+    return new View('site.aspirant', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirant' => $aspirant, 'authors_pub' => $authors_pub, 'coauthors_pub' => $coauthors_pub, 'authors_dis' => $authors_dis, 'coauthors_dis' => $coauthors_dis, 'statuses' => $statuses]);
    }
 
    

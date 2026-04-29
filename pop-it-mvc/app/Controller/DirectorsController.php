@@ -61,23 +61,27 @@ class DirectorsController
    {
 
     $director = Scientific_director::where('directorid', $request->id)->first();
-    $publications = Publication::whereHas('aspirant', function($q) use($director) {$q->where('director', $director->directorid);})->get();
-    $disertations = Dissertation::whereHas('aspirant', function($q) use($director) {$q->where('director', $director->directorid);})->get();
-    $aspirants = Aspirant::where('director', $director->directorid)->get();
+    $publications = Publication::where('coauthor', $request->id)->get();
+    $disertations = Dissertation::where('director', $request->id)->get();
+    $aspirants = Aspirant::whereHas('dirssertations', function($q) use($director) {$q->where('director', $director->directorid);})->get();
 
     $authors_pub = [];
+    $coauthors_pub = [];
         foreach ($publications as $publication){
-            $authors_pub[$publication->publicationid] = Aspirant::where('aspirantid', $publication->authorid)->first();
+            $authors_pub[$publication->publicationid] = Aspirant::where('aspirantid', $publication->author)->first();
+            $coauthors_pub[$publication->publicationid] = Scientific_director::where('directorid', $publication->coauthor)->first();
         }
 
     $statuses = [];
     $authors_dis = [];
+    $coauthors_dis = [];
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
-            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
+            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->aspirant)->first();
+            $coauthors_dis[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
 
-    return new View('site.scientific_director', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirants' => $aspirants, 'authors_pub' => $authors_pub, 'authors_dis' => $authors_dis, 'statuses' => $statuses]);
+    return new View('site.scientific_director', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirants' => $aspirants, 'authors_pub' => $authors_pub, 'coauthors_pub' => $coauthors_pub, 'authors_dis' => $authors_dis, 'coauthors_dis' => $coauthors_dis, 'statuses' => $statuses]);
    }
 
 }
