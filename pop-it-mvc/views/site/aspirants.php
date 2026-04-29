@@ -5,6 +5,7 @@
         <form method="get">
             <label>Поиск по: <select name="search_settings">
          <option value="1">ФИО</option>
+         <option value="2">По научному руководителю</option>
        </select>
             <input type="text" name="search" placeholder="Поиск..." value="<?= htmlspecialchars($old['search'] ?? '') ?>">
         </form>

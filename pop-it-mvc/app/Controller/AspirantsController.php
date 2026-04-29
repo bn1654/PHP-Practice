@@ -26,7 +26,11 @@ class AspirantsController
             if($request->get('search_settings')==1){
             foreach($search as $s){
            $query->where('firsname', 'LIKE', "%{$s}%")->orWhere('lastname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");
-        }}
+        }}else if($request->get('search_settings')==2){
+            foreach($search as $s){
+            $query->whereHas('dissertations', function($q) use($s) {$q->whereIn('director', function($qu) use($s) {$qu->select('directorid')->from('scientific_directors')->where('firsname', 'LIKE', "%{$s}%")->orWhere('lastname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");});})->get();
+            }
+        }
         $aspirants = $query->get();
         }
 

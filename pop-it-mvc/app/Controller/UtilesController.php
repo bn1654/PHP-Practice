@@ -6,6 +6,7 @@ use Model\User;
 use Model\Role;
 use Model\Dissertation;
 use Model\Aspirant;
+use Model\Scientific_director;
 use Model\Status;
 use Src\View;
 use Src\Request;
@@ -18,6 +19,7 @@ class UtilesController
          $disertations = Dissertation::where('status', 3)->get();
         $statuses = [];
         $authors = [];
+        $coauthors = [];
         $query = Dissertation::query();
 
         if($request->get('director')){
@@ -33,12 +35,13 @@ class UtilesController
 
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
-            $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
+            $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->aspirant)->first();
+            $coauthors[$disertation->dissertationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
 
 
 
-        return new View('site.reporting', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors]);
+        return new View('site.reporting', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors, 'coauthors' => $coauthors]);
     }
 
 
