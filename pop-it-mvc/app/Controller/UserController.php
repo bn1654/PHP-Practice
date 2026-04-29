@@ -17,12 +17,14 @@ class UserController
        if ($request->method==='POST'){
         $validator = new Validator($request->all(), [
            'role' => ['required'],
-           'login' => ['required', 'unique:users,login'],
-           'password' => ['required'],
+           'login' => ['required', 'unique:users,login', 'login_format'],
+           'password' => ['required', 'password_format'],
            'password2' => ['required']
        ], [
            'required' => 'Поле пусто',
-           'unique' => 'Поле должно быть уникально'
+           'unique' => 'Поле должно быть уникально',
+           'login_format' => 'Логин должен содержать только латинские буквы, цифры, - и _ и иметь длину от 3 символов',
+           'password_format' => 'Пароль должен содержать только латинские буквы, цифры, - и _ и иметь длину от 8 символов'
        ]);
 
         if($validator->fails()){

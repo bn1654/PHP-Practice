@@ -255,6 +255,7 @@ a {
     padding-right: 50px;
     align-items: center;
     border-radius: 55px;
+    
 }
 
 .form-wrap {
@@ -308,6 +309,7 @@ a {
     display: flex;
     flex-direction: column;
     font-size: 36px;
+    max-width: 18vw;
 }
 
 form button {

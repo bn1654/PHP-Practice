@@ -24,7 +24,9 @@ return [
        'director_exists' => \Validators\DirectorExistsValidator::class,
        'format' => \Validators\FormatValidator::class,
        'aspirant_exists' => \Validators\AspirantExistsValidator::class,
-       'date' => \Validators\DateValidator::class
+       'date' => \Validators\DateValidator::class,
+       'login_format' => \Validators\LoginValidator::class,
+        'password_format' =>  \Validators\PasswordValidator::class
    ],
    'providers' => [
    'kernel' => \Providers\KernelProvider::class,
