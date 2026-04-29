@@ -5,6 +5,7 @@ namespace Controller;
 use Model\Dissertation;
 use Model\Aspirant;
 use Model\Status;
+use Model\Scientific_director;
 use Src\View;
 use Src\Request;
 use Src\Validator\Validator;
@@ -16,9 +17,11 @@ class DissertationsController
         $disertations = Dissertation::all();
         $statuses = [];
         $authors = [];
+        $coauthors = [];
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
             $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
+            $coauthors[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
         
         if($request->get('search')){
@@ -32,7 +35,7 @@ class DissertationsController
             $disertations = $query->get();
         }
 
-        return new View('site.dissertations', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors]);
+        return new View('site.dissertations', ['dissertations' => $disertations, 'statuses' => $statuses, 'authors' => $authors, 'coauthors' => $coauthors]);
     }
 
 

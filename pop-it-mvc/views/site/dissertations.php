@@ -17,6 +17,7 @@
                     <h2>' . $disertation->theme . '</h2>
                     <span>' . $statuses[$disertation->dissertationid]->name . '</span>
                     <span>Автор:' . $authors[$disertation->dissertationid]->lastname . ' ' . $authors[$disertation->dissertationid]->firsname . ' ' . $authors[$disertation->dissertationid]->patronym . '</span>
+                    <span>Научный руководитель:' . $coauthors[$publication->publicationid]->lastname . ' ' . $coauthors[$publication->publicationid]->firsname . ' ' . $coauthors[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Специальность:' . $disertation->vak . '</span>
