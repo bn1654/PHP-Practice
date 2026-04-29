@@ -20,8 +20,8 @@ class DissertationsController
         $coauthors = [];
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
-            $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
-            $coauthors[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
+            $authors[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->aspirant)->first();
+            $coauthors[$disertation->dissertationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
         
         if($request->get('search')){
@@ -42,6 +42,7 @@ class DissertationsController
    public function add(Request $request): string
    {
         $authors = Aspirant::all();
+        $direcrors = Scientific_director::all();
         $statuses = Status::all();
     if ($request->method==='POST' ){
         $validator = new Validator($request->all(), [
@@ -49,20 +50,23 @@ class DissertationsController
            'status' => ['required'],
            'vak' => ['required'],
            'date' => ['required', 'date'],
-           'authorid' => ['required', 'format', 'aspirant_exists']
+           'aspirant' => ['required', 'format', 'aspirant_exists'],
+           'director' => ['required', 'format', 'director_exists']
        ], [
-           'required' => 'Поле :field пусто',
-           'format' => 'Поле :field должно соответствовать формату номер - Имя Отчество Фамилия',
-           'aspirant_exists' => ':field такого директора не существует',
-           'date' => ':field укажите верную дату'
+           'required' => 'Поле пусто',
+           'format' => 'Поле должно соответствовать формату номер - Имя Отчество Фамилия',
+           'aspirant_exists' => 'Такого аспиранта не существует',
+           'director_exists' => 'Такого руководителя не существует',
+           'date' => 'Укажите верную дату'
        ]);
 
             if($validator->fails()){
            return new View('site.dissertation_form',
-               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors, 'statuses' => $statuses]);
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors, 'statuses' => $statuses, 'directors' => $direcrors]);
        }    
         $request_idea = $request->all();
-            $request_idea['authorid'] = explode(' -', $request_idea['authorid'])[0];
+            $request_idea['aspirant'] = explode(' -', $request_idea['aspirant'])[0];
+            $request_idea['director'] = explode(' -', $request_idea['director'])[0];
 
             if(Dissertation::create($request_idea))
            {app()->route->redirect('/dissertations');}
@@ -70,7 +74,7 @@ class DissertationsController
     
 
 
-    return new View('site.dissertation_form', ['authors' => $authors, 'statuses' => $statuses]);
+    return new View('site.dissertation_form', ['authors' => $authors, 'statuses' => $statuses, 'directors' => $direcrors]);
    }
 
    

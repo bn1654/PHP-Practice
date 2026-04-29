@@ -16,7 +16,49 @@
     <?php endif; ?></label>
 </div>
        <div class='inputgr'>
-       <label>Статус <select name="status">
+       
+
+       <label>Аспирант <input type="text" name="aspirant" list="aspirant-data"><?php 
+       if (!empty($errors['aspirant'])): ?>
+        <div class="error-message">
+            <?= htmlspecialchars(implode(', ', $errors['aspirant'])) ?>
+        </div>
+    <?php endif; ?>
+    <datalist id="aspirant-data">
+            <?php
+        foreach ($authors as $author)
+            {
+                echo '<option value="' . $author->aspirantid . ' - ' . $author->firsname . ' ' . $author->patronym . ' ' . $author->lastname . '"></option>';
+            }
+        ?>
+        </datalist></label>
+        <label>Научный руководитель <input type="text" name="director" list="director-data"><?php 
+       if (!empty($errors['director'])): ?>
+        <div class="error-message">
+            <?= htmlspecialchars(implode(', ', $errors['director'])) ?>
+        </div>
+    <?php endif; ?>
+    <datalist id="director-data">
+            <?php
+        foreach ($directors as $author)
+            {
+                echo '<option value="' . $author->directorid . ' - ' . $author->firsname . ' ' . $author->patronym . ' ' . $author->lastname . '"></option>';
+            }
+        ?>
+        </datalist></label>
+</div>
+
+       <div class='inputgr'>
+       
+       <label>Специальность ВАК <select name="vak">
+         <option value="1.5.9 Ботаника">1.5.9 Ботаника</option>
+       </select><?php 
+       if (!empty($errors['vak'])): ?>
+        <div class="error-message">
+            <?= htmlspecialchars(implode(', ', $errors['vak'])) ?>
+       </div>
+    <?php endif; ?></label>
+    <label>Статус <select name="status">
             <?php
         foreach ($statuses as $status)
             {
@@ -29,39 +71,13 @@
             <?= htmlspecialchars(implode(', ', $errors['status'])) ?>
         </div>
     <?php endif; ?></label>
-
-       <label>Автор <input type="text" name="authorid" list="author-data"><?php 
-       if (!empty($errors['authorid'])): ?>
-        <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['authorid'])) ?>
-        </div>
-    <?php endif; ?>
-    <datalist id="author-data">
-            <?php
-        foreach ($authors as $author)
-            {
-                echo '<option value="' . $author->aspirantid . ' - ' . $author->firsname . ' ' . $author->patronym . ' ' . $author->lastname . '"></option>';
-            }
-        ?>
-        </datalist></label>
 </div>
-
-       <div class='inputgr'>
-       <label>Дата утверждения <input type="date" name="date"><?php 
+<label>Дата утверждения <input type="date" name="date"><?php 
        if (!empty($errors['date'])): ?>
         <div class="error-message">
             <?= htmlspecialchars(implode(', ', $errors['date'])) ?>
         </div>
     <?php endif; ?></label>
-       <label>Специальность ВАК <select name="vak">
-         <option value="1.5.9 Ботаника">1.5.9 Ботаника</option>
-       </select><?php 
-       if (!empty($errors['vak'])): ?>
-        <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['vak'])) ?>
-        </div>
-    <?php endif; ?></label>
-</div>
 
        <button>Добавить</button>
    </form>
