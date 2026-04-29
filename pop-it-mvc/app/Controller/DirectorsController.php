@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Aspirant;
 use Model\Publication;
+use Model\Directors_add;
 use Model\Dissertation;
 use Model\Status;
 use Model\Scientific_director;
@@ -41,8 +42,7 @@ class DirectorsController
            'lastname' => ['required'],
            'patronym' => ['required']
        ], [
-           'required' => 'Поле :field пусто',
-           'unique' => 'Поле :field должно быть уникально'
+           'required' => 'Поле :field пусто'
        ]);
 
         if($validator->fails()){
@@ -52,7 +52,9 @@ class DirectorsController
 
 
          if(Scientific_director::create($request->all()))
-           {app()->route->redirect('/directors');}
+           {
+            Directors_add::create(['user' => app()->auth::user()->userid, 'director' => Scientific_director::select('directorid')->where('firsname', $request->get('firsname'))->where('lastname', $request->get('lastname'))->where('patronym', $request->get('patronym'))->orderBy('directorid', 'desc')->first()->directorid]);
+            app()->route->redirect('/directors');}
        }
         return new View('site.director_form');
    }
@@ -63,7 +65,7 @@ class DirectorsController
     $director = Scientific_director::where('directorid', $request->id)->first();
     $publications = Publication::where('coauthor', $request->id)->get();
     $disertations = Dissertation::where('director', $request->id)->get();
-    $aspirants = Aspirant::whereHas('dirssertations', function($q) use($director) {$q->where('director', $director->directorid);})->get();
+    $aspirants = Aspirant::whereHas('dissertations', function($q) use($director) {$q->where('director', $director->directorid);})->get();
 
     $authors_pub = [];
     $coauthors_pub = [];
