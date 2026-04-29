@@ -25,9 +25,18 @@ class UtilesController
         if($request->get('director')){
             $search = explode(' ', trim($request->get('director')));
             
+            if($request->get('search_settings')==1){
             foreach($search as $s){
-           $query->whereHas('aspirant', function($q) use($s) {$q->whereHas('director', function($que) use($s) {$que->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");});});
+                $query->where('theme', 'LIKE', "%{$s}%");
             }
+            }else if($request->get('search_settings')==2)
+            {
+                foreach($search as $s){
+                $query->whereHas('aspirant', function($q) use($s) {$q->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");});
+            }}else if($request->get('search_settings')==3){
+                 foreach($search as $s){
+                $query->whereHas('director', function($q) use($s) {$q->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");});
+            }}
             $disertations = $query->where('status', 3)->get();
         }
 

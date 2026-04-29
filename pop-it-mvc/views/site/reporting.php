@@ -4,7 +4,11 @@
     <div class="page-title">
         <h1>Количество защищенных работ: <?= $dissertations->count() ?></h1>
         <form method="get">
-            <label>Научный руководитель: <input type="text" name="director" placeholder="Поиск..."></label>
+            <label>Поиск по: <select name="search_settings">
+                <option value="1">По теме</option>
+                <option value="2">По аспиранту</option>
+                <option value="3">По научному руководителю</option>
+       </select></label> <label><input type="text" name="director" placeholder="Поиск..."></label>
             <button><img src="../assets/img/search_button.svg"></button>
         </form>
     </div>
