@@ -17,6 +17,7 @@
                     <h2>' . $publication->theme . '</h2>
                     <span>' . $publication->publisher . '</span>
                     <span>Автор:' . $authors[$publication->publicationid]->lastname . ' ' . $authors[$publication->publicationid]->firsname . ' ' . $authors[$publication->publicationid]->patronym . '</span>
+                    <span>Совтор:' . $coauthors[$publication->publicationid]->lastname . ' ' . $coauthors[$publication->publicationid]->firsname . ' ' . $coauthors[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>

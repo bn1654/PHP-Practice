@@ -14,8 +14,7 @@ class Aspirant extends Model
    protected $fillable = [
         'firsname',
        'lastname',
-       'patronym',
-       'director'
+       'patronym'
    ];
 
    public function director()

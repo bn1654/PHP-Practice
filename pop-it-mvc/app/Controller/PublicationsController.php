@@ -12,11 +12,13 @@ class PublicationsController
 {
    public function all(Request $request): string
     {
-        $publications = Publication::all();
+        $publications = Publication::orderBy('publish_date', 'desc')->take(5)->get();
 
         $authors = [];
+        $coauthors = [];
         foreach ($publications as $publication){
-            $authors[$publication->publicationid] = Aspirant::where('aspirantid', $publication->authorid)->first();
+            $authors[$publication->publicationid] = Aspirant::where('aspirantid', $publication->author)->first();
+            $coauthors[$publication->publicationid] = Scientific_director::where('directorid', $publication->coauthor)->first();
         }
 
         if($request->get('search')){
@@ -30,7 +32,7 @@ class PublicationsController
             $publications = $query->get();
         }
 
-        return new View('site.publications', ['publications' => $publications, 'authors' => $authors]);
+        return new View('site.publications', ['publications' => $publications, 'authors' => $authors, 'coauthors' => $coauthors]);
     }
 
 

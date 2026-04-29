@@ -16,7 +16,8 @@ class Dissertation extends Model
        'status',
        'date',
        'vak',
-       'authorid'
+       'aspirant',
+       'director'
    ];
 
    public function aspirant()

@@ -15,7 +15,8 @@ class Publication extends Model
        'publisher',
        'publish_date',
        'index_RINC',
-       'authorid'
+       'author',
+       'coauthor'
    ];
 
    protected $casts = [
