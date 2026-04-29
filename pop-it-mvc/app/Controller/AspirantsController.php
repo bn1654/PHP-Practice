@@ -16,23 +16,20 @@ class AspirantsController
    public function all(Request $request): string
     {
         $aspirants = Aspirant::all();
-        $aspirant_directors = [];
-        foreach ($aspirants as $aspirant){
-            $aspirant_directors[$aspirant->aspirantid] = Scientific_director::where('directorid', $aspirant->director)->first();
-        }
 
         if($request->get('search')){
            $search = explode(' ', trim($request->get('search')));
             
             $query = Aspirant::query();
 
+            if($request->get('search_settings')==1){
             foreach($search as $s){
-           $query->where('firsname', 'LIKE', "%{$s}%")->orWhere('lastname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%")->orWhereHas('director', function($query) use ($s) {$query->where('lastname', 'LIKE', "%{$s}%")->orWhere('firsname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");});
-        }
+           $query->where('firsname', 'LIKE', "%{$s}%")->orWhere('lastname', 'LIKE', "%{$s}%")->orWhere('patronym', 'LIKE', "%{$s}%");
+        }}
         $aspirants = $query->get();
         }
 
-        return new View('site.aspirants', ['aspirants' => $aspirants, 'directors' => $aspirant_directors]);
+        return new View('site.aspirants', ['aspirants' => $aspirants]);
     }
 
 

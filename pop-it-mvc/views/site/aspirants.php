@@ -2,6 +2,9 @@
     <div class="page-title">
         <h1>Все наши аспиранты</h1>
         <form method="get">
+            <label>Поиск по: <select name="search_settings">
+         <option value="1">ФИО</option>
+       </select>
             <input type="text" name="search" placeholder="Поиск...">
         </form>
     </div>
@@ -15,8 +18,6 @@
                 echo '<a href=' . app()->route->getUrl("/aspirant?id={$aspirant->aspirantid}") . '><div class="aspirant">
             <div>
             <h2>' . $aspirant->lastname . ' ' . $aspirant->firsname . ' ' . $aspirant->patronym . '</h2>
-            <span>Научный руководитель:<br>' . $directors[$aspirant->aspirantid]->lastname . ' ' . $directors[$aspirant->aspirantid]->firsname . ' ' . $directors[$aspirant->aspirantid]->patronym . '</span>
-            </div>
         </div></a>';
             }
     ?>

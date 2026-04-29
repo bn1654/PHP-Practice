@@ -15,7 +15,6 @@
                 echo '<a href=' . app()->route->getUrl("/director?id={$director->directorid}") . '><div class="director">
             <div>
             <h2>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</h2>
-            <span>Аспирантов:' . $director->get_aspirants_count() . '</span>
             </div>
         </div></a>';
             }
