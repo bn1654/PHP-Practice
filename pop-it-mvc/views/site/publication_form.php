@@ -15,16 +15,11 @@
     <?php endif; ?></label>
 </div>
        <div class='inputgr'>
-       <label>Издатель <input type="text" name="publisher"><?php 
-       if (!empty($errors['publisher'])): ?>
+       
+       <label>Автор <input type="text" name="author" list="author-data"><?php 
+       if (!empty($errors['author'])): ?>
         <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['publisher'])) ?>
-        </div>
-    <?php endif; ?></label>
-       <label>Автор <input type="text" name="authorid" list="author-data"><?php 
-       if (!empty($errors['authorid'])): ?>
-        <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['authorid'])) ?>
+            <?= htmlspecialchars(implode(', ', $errors['author'])) ?>
         </div>
     <?php endif; ?><datalist id="author-data">
             <?php
@@ -34,12 +29,27 @@
             }
         ?>
         </datalist></label>
+        <label>Соавтор <input type="text" name="coauthor" list="coauthor-data"><?php 
+       if (!empty($errors['coauthor'])): ?>
+        <div class="error-message">
+            <?= htmlspecialchars(implode(', ', $errors['coauthor'])) ?>
+        </div>
+    <?php endif; ?><datalist id="coauthor-data">
+            <?php
+        foreach ($coauthors as $author)
+            {
+                echo '<option value="' . $author->directorid . ' - ' . $author->firsname . ' ' . $author->patronym . ' ' . $author->lastname . '"></option>';
+            }
+        ?>
+        </datalist></label>
+
 </div>
        <div class='inputgr'>
-       <label>Дата публикации <input type="date" name="publish_date"><?php 
-       if (!empty($errors['publish_date'])): ?>
+       
+    <label>Издатель <input type="text" name="publisher"><?php 
+       if (!empty($errors['publisher'])): ?>
         <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['publish_date'])) ?>
+            <?= htmlspecialchars(implode(', ', $errors['publisher'])) ?>
         </div>
     <?php endif; ?></label>
        <label>Индекс РИНЦ <input type="number" name="index_RINC"><?php 
@@ -49,6 +59,12 @@
         </div>
     <?php endif; ?></label>
 </div>
+<label>Дата публикации <input type="date" name="publish_date"><?php 
+       if (!empty($errors['publish_date'])): ?>
+        <div class="error-message">
+            <?= htmlspecialchars(implode(', ', $errors['publish_date'])) ?>
+        </div>
+    <?php endif; ?></label>
        <button>Добавить</button>
    </form>
 </div>

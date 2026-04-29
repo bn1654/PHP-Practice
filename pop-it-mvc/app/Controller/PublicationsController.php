@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Publication;
 use Model\Aspirant;
+use Model\Scientific_director;
 use Src\View;
 use Src\Request;
 use Src\Validator\Validator;
@@ -39,26 +40,30 @@ class PublicationsController
    public function add(Request $request): string
    {
     $authors = Aspirant::all();
+    $coauthors = Scientific_director::all();
     if ($request->method==='POST' ){
         $validator = new Validator($request->all(), [
            'theme' => ['required'],
            'publisher' => ['required'],
            'index_RINC' => ['required'],
            'publish_date' => ['required', 'date'],
-           'authorid' => ['required', 'format', 'aspirant_exists']
+           'author' => ['required', 'format', 'aspirant_exists'],
+           'coauthor' => ['required', 'format', 'director_exists']
        ], [
            'required' => 'Поле пусто',
            'format' => 'Поле должно соответствовать формату номер - Имя Отчество Фамилия',
-           'aspirant_exists' => 'Такого директора не существует',
+           'aspirant_exists' => 'Такого аспиранта не существует',
+           'director_exists' => 'Такого руководителя не существует',
            'date' => 'Укажите верную дату'
        ]);
 
             if($validator->fails()){
            return new View('site.publication_form',
-               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors]);
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'authors' => $authors, 'coauthors' => $coauthors]);
        }    
         $request_idea = $request->all();
-            $request_idea['authorid'] = explode(' -', $request_idea['authorid'])[0];
+            $request_idea['author'] = explode(' -', $request_idea['author'])[0];
+            $request_idea['coauthor'] = explode(' -', $request_idea['coauthor'])[0];
 
             if(Publication::create($request_idea))
            {app()->route->redirect('/publications');}
@@ -66,7 +71,7 @@ class PublicationsController
     
 
     
-    return new View('site.publication_form', ['authors' => $authors]);
+    return new View('site.publication_form', ['authors' => $authors, 'coauthors' => $coauthors]);
    }
 
    
