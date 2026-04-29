@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Aspirant;
+use Model\Aspirants_add;
 use Model\Scientific_director;
 use Model\Publication;
 use Model\Dissertation;
@@ -35,34 +36,29 @@ class AspirantsController
 
    public function add(Request $request): string
    {
-
-        $directors = Scientific_director::all();
     if ($request->method==='POST' ){
         $validator = new Validator($request->all(), [
            'firsname' => ['required'],
            'lastname' => ['required'],
-           'patronym' => ['required'],
-           'director' => ['required', 'format', 'director_exists']
+           'patronym' => ['required']
        ], [
-           'required' => 'Поле пусто',
-           'format' => 'Поле должно соответствовать формату номер - Имя Отчество Фамилия',
-           'director_exists' => 'Такого директора не существует'
+           'required' => 'Поле пусто'
        ]);
 
             if($validator->fails()){
            return new View('site.aspirant_form',
-               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'directors' => $directors]);
-       }    
-        $request_idea = $request->all();
-            $request_idea['director'] = explode(' -', $request_idea['director'])[0];
+               ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+       } 
 
-            if(Aspirant::create($request_idea))
-           {app()->route->redirect('/aspirants');}
+            if(Aspirant::create($request->all()))
+           {
+            Aspirants_add::create(['user' => app()->auth::user()->userid, 'aspirant' => Aspirant::select('aspirantid')->where('firsname', $request->get('firsname'))->where('lastname', $request->get('lastname'))->where('patronym', $request->get('patronym'))->orderBy('aspirantid', 'desc')->first()->aspirantid]);
+            app()->route->redirect('/aspirants');}
        }
     
 
     
-    return new View('site.aspirant_form', ['directors' => $directors]);
+    return new View('site.aspirant_form');
    }
 
    public function detail(Request $request): string 
@@ -87,7 +83,7 @@ class AspirantsController
             $coauthors_dis[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
 
-    return new View('site.aspirant', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirant' => $aspirant, 'authors_pub' => $authors_pub, 'coauthors_pub' => $coauthors_pub, 'authors_dis' => $authors_dis, 'coauthors_dis' => $coauthors_dis, 'statuses' => $statuses]);
+    return new View('site.aspirant', ["publications" => $publications, 'dissertations' => $disertations, 'aspirant' => $aspirant, 'authors_pub' => $authors_pub, 'coauthors_pub' => $coauthors_pub, 'authors_dis' => $authors_dis, 'coauthors_dis' => $coauthors_dis, 'statuses' => $statuses]);
    }
 
    

@@ -29,6 +29,6 @@ class Publication extends Model
 
    public function aspirant()
 {
-    return $this->belongsTo(Aspirant::class, 'authorid', 'aspirantid');
+    return $this->belongsTo(Aspirant::class, 'author', 'aspirantid');
 }
 }

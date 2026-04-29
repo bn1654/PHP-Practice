@@ -28,20 +28,6 @@
         </div>
     <?php endif; ?></label>
 </div>
-       <label>Научный руководитель <input type="text" name="director" list="data"><?php 
-       if (!empty($errors['director'])): ?>
-        <div class="error-message">
-            <?= htmlspecialchars(implode(', ', $errors['director'])) ?>
-        </div>
-    <?php endif; ?>
-       <datalist id="data">
-        <?php
-        foreach ($directors as $director)
-            {
-                echo '<option value="' . $director->directorid . ' - ' . $director->firsname . ' ' . $director->patronym . ' ' . $director->lastname . '"></option>';
-            }
-        ?>
-        </datalist></label>
        <button>Добавить</button>
    </form>
 </div>

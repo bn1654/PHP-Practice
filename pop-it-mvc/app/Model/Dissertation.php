@@ -22,6 +22,6 @@ class Dissertation extends Model
 
    public function aspirant()
 {
-    return $this->belongsTo(Aspirant::class, 'authorid', 'aspirantid');
+    return $this->belongsTo(Aspirant::class, 'aspirant', 'aspirantid');
 }
 }
