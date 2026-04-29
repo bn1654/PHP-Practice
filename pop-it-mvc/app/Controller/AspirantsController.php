@@ -68,20 +68,23 @@ class AspirantsController
    public function detail(Request $request): string 
    {
     $aspirant = Aspirant::where('aspirantid', $request->id)->first();
-    $publications = Publication::whereHas('aspirant', function($q) use($aspirant) {$q->where('authorid', $aspirant->aspirantid);})->get();
-    $disertations = Dissertation::whereHas('aspirant', function($q) use($aspirant) {$q->where('authorid', $aspirant->aspirantid);})->get();
-    $director = Scientific_director::where('directorid', $aspirant->director)->first();
+    $publications = Publication::whereHas('aspirant', function($q) use($aspirant) {$q->where('author', $aspirant->aspirantid);})->get();
+    $disertations = Dissertation::whereHas('aspirant', function($q) use($aspirant) {$q->where('aspirant', $aspirant->aspirantid);})->get();
 
     $authors_pub = [];
+    $coauthors_pub = [];
         foreach ($publications as $publication){
-            $authors_pub[$publication->publicationid] = Aspirant::where('aspirantid', $publication->authorid)->first();
+            $authors_pub[$publication->publicationid] = Aspirant::where('aspirantid', $publication->author)->first();
+            $coauthors_pub[$publication->publicationid] = Scientific_director::where('directorid', $publication->coauthor)->first();
         }
 
     $statuses = [];
     $authors_dis = [];
+    $coauthors_dis = [];
         foreach ($disertations as $disertation){
             $statuses[$disertation->dissertationid] = Status::where('statusid', $disertation->status)->first();
-            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->authorid)->first();
+            $authors_dis[$disertation->dissertationid] = Aspirant::where('aspirantid', $disertation->author)->first();
+            $coauthors_dis[$publication->publicationid] = Scientific_director::where('directorid', $disertation->director)->first();
         }
 
     return new View('site.aspirant', ['director' => $director, "publications" => $publications, 'dissertations' => $disertations, 'aspirant' => $aspirant, 'authors_pub' => $authors_pub, 'authors_dis' => $authors_dis, 'statuses' => $statuses]);

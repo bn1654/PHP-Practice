@@ -9,7 +9,6 @@
             echo '
             <span>Научные публикации: ' . $publications->count() .'</span>
             <span>Диссертации: ' . $dissertations->count() .'</span>
-           <span>Научный руквовдитель:<br><a href=' . app()->route->getUrl("/director?id={$director->directorid}") . '>' . $director->lastname . ' ' . $director->firsname . ' ' . $director->patronym . '</a></span>
         </div>'
         ?>
     </div>
@@ -23,6 +22,7 @@
                     <h2>' . $publication->theme . '</h2>
                     <span>' . $publication->publisher . '</span>
                     <span>Автор:' . $authors_pub[$publication->publicationid]->lastname . ' ' . $authors_pub[$publication->publicationid]->firsname . ' ' . $authors_pub[$publication->publicationid]->patronym . '</span>
+                    <span>Совтор:' . $coauthors_pub[$publication->publicationid]->lastname . ' ' . $coauthors_pub[$publication->publicationid]->firsname . ' ' . $coauthors_pub[$publication->publicationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Цитирований в РИНЦ:' . $publication->index_RINC . '</span>
@@ -42,6 +42,7 @@
                     <h2>' . $disertation->theme . '</h2>
                     <span>' . $statuses[$disertation->dissertationid]->name . '</span>
                     <span>Автор:' . $authors_dis[$disertation->dissertationid]->lastname . ' ' . $authors_dis[$disertation->dissertationid]->firsname . ' ' . $authors_dis[$disertation->dissertationid]->patronym . '</span>
+                    <span>Научный руководитель:' . $coauthors_dis[$disertation->dissertationid]->lastname . ' ' . $coauthors_dis[$disertation->dissertationid]->firsname . ' ' . $coauthors_dis[$disertation->dissertationid]->patronym . '</span>
                     </div>
                     <div class="down-card">
                     <span>Специальность:' . $disertation->vak . '</span>
